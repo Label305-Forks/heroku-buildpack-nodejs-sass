@@ -1,4 +1,4 @@
-Heroku Buildpack for Node.js ans Saas
+Heroku Buildpack for Node.js and Saas
 ============================
 
 This is a buildpack you can use to execute the sass command in your `package.json`'s post install, or through grunt. Grunt is not included since you can install grunt using your `package.json`.
