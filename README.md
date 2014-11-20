@@ -3,6 +3,13 @@ Heroku Buildpack for Node.js and Saas
 
 This is a buildpack you can use to execute the sass command in your `package.json`'s post install, or through grunt. Grunt is not included since you can install grunt using your `package.json`.
 
+You need to use multiple buildpacks to get ruby. Use a `.buildpacks` file:
+
+```
+https://github.com/heroku/heroku-buildpack-ruby.git
+https://github.com/label305-forks/heroku-buildpack-nodejs.git
+```
+
 For example use a `package.json`:
 
 ```json
