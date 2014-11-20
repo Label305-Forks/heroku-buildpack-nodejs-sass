@@ -1,7 +1,35 @@
-Heroku Buildpack for Node.js
+Heroku Buildpack for Node.js ans Saas
 ============================
 
-This is the official [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for Node.js apps. If you fork this repository, please **update this README** to explain what your fork does and why it's special.
+This is a buildpack you can use to execute the sass command in your `package.json`'s post install, or through grunt. Grunt is not included since you can install grunt using your `package.json`.
+
+For example use a `package.json`:
+
+```json
+{
+  "private": true,
+  "name": "Your App",
+  "version": "0.1.0",
+  "engines": {
+    "node": "~0.10.33"
+  },
+  "dependencies": {
+  	"grunt-cli": "*",
+    "grunt": "^0.4.5",
+    "grunt-contrib-requirejs": "^0.4.4",
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-react": "^0.9.0",
+    "bower": "^1.3.12",
+    "react-tools": "^0.12.1"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install && ./node_modules/grunt-cli/bin/grunt"
+  }
+}
+```
+
+Now you can use `grunt-contrib-sass` to execute sass code.
 
 
 How it Works
@@ -20,6 +48,7 @@ Here's an overview of what this buildpack does:
 - Runs `npm rebuild` if `node_modules` is checked into version control.
 - Always runs `npm install` to ensure [npm script hooks](https://npmjs.org/doc/misc/npm-scripts.html) are executed.
 - Always runs `npm prune` after restoring cached modules to ensure cleanup of unused dependencies.
+- Installs `sass` with Ruby 1.9.1.
 
 For more technical details, see the [heavily-commented compile script](https://github.com/heroku/heroku-buildpack-nodejs/blob/master/bin/compile).
 
